@@ -1,0 +1,38 @@
+<% @latest["top_stories"].each do |top_story| %>
+    <div>
+      <span>
+        标题：<%= top_story["title"] %>
+      </span>
+      <br>
+      <span>
+        图片地址:<%= top_story["image"] %>
+      </span>
+      <br>
+      <span>
+        detail_id:<%= top_story["id"] %>
+      </span>
+      <%= link_to(detail_path(top_story["id"])) do %>
+        详情
+      <% end %>
+    </div>
+    ******
+<% end %>
+
+<hr>
+
+<%= @latest["stories"].each do |story| %>
+    <div>
+      <span>
+        标题：<%= story["title"] %>
+      </span>
+      <br>
+      <span>
+        图片地址:<%= story["images"] %>
+      </span>
+      <br>
+      <span>
+        detail_id:<%= story["id"] %>
+      </span>
+    </div>
+    ******
+<% end %>

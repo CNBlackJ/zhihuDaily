@@ -1,1 +1,6 @@
-<%= @detail["body"] %>
+<article class="weui-article">
+  <h1><%= @detail["title"] %></h1>
+  <section>
+    <%= raw(@detail["body"]) %>
+  </section>
+</article>

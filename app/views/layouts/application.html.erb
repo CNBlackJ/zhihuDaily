@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <%= stylesheet_link_tag 'weui-rails', media: 'all' %>
+    <script src="http://cdnjs.gtimg.com/cdnjs/libs/zepto/1.1.4/zepto.min.js"></script>
     <title>ZhihuDaily</title>
     <%= csrf_meta_tags %>
 
@@ -8,7 +12,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body ontouchstart>
     <%= yield %>
   </body>
 </html>

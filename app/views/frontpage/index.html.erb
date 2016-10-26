@@ -1,38 +1,57 @@
-<% @latest["top_stories"].each do |top_story| %>
-    <div>
-      <span>
-        标题：<%= top_story["title"] %>
-      </span>
-      <br>
-      <span>
-        图片地址:<%= top_story["image"] %>
-      </span>
-      <br>
-      <span>
-        detail_id:<%= top_story["id"] %>
-      </span>
-      <%= link_to(detail_path(top_story["id"])) do %>
-        详情
-      <% end %>
-    </div>
-    ******
-<% end %>
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <% @latest["top_stories"].each_with_index do |top_story, index| %>
+        <div class="item <%= index==1 ? 'active' : '' %>">
+          <img style="width: 100%;height: 260px;" class="img-responsive" src="<%= top_story["image"] %>">
+          <div class="carousel-caption">
+            <%= link_to(detail_path(top_story["id"])) do %>
+                <%= top_story["title"] %>
+            <% end %>
+          </div>
+        </div>
+    <% end %>
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
 
 <hr>
 
-<%= @latest["stories"].each do |story| %>
-    <div>
-      <span>
-        标题：<%= story["title"] %>
-      </span>
-      <br>
-      <span>
-        图片地址:<%= story["images"] %>
-      </span>
-      <br>
-      <span>
-        detail_id:<%= story["id"] %>
-      </span>
-    </div>
-    ******
-<% end %>
+<div class="weui-panel weui-panel_access">
+  <div class="weui-panel__bd">
+    <% @latest["stories"].each do |story| %>
+        <%= link_to(detail_path(story["id"]), :class=>'weui-media-box weui-media-box_appmsg') do %>
+            <div class="weui-media-box__hd">
+              <img class="weui-media-box__thumb" src="<%= story["images"] %>" alt="">
+            </div>
+            <div class="weui-media-box__bd">
+              <p class="weui-media-box__desc"><%= story["title"] %></p>
+            </div>
+        <% end %>
+    <% end %>
+  </div>
+  <div class="weui-panel__ft">
+    <a href="javascript:void(0);" class="weui-cell weui-cell_access weui-cell_link">
+      <div class="weui-cell__bd">查看更多</div>
+      <span class="weui-cell__ft"></span>
+    </a>
+  </div>
+</div>

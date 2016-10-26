@@ -11,6 +11,10 @@ class FrontpageController < ApplicationController
     @detail = JSON.parse(HTTP.get("http://news-at.zhihu.com/api/4/news/#{params['id']}").to_s)
   end
 
+  def count
+    render json: {"likes": '100', 'comments': '200'}
+  end
+
   private
   def counter
     id = params['id']

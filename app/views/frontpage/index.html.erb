@@ -34,24 +34,37 @@
 
 <div class="weui-panel weui-panel_access">
   <div class="weui-panel__bd">
-    <% @latest["stories"].each do |story| %>
+    <% @latest["stories"].each_with_index do |story, index| %>
         <%= link_to(detail_path(story["id"]), :class => 'weui-media-box weui-media-box_appmsg') do %>
             <div class="weui-media-box__hd">
               <img class="weui-media-box__thumb" src="<%= story["images"][0] %>" alt="">
             </div>
             <div class="weui-media-box__bd">
               <p class="weui-media-box__desc"><%= story["title"] %></p>
-              <ul class="weui-media-box__info" style="margin:0">
+              <ul id="app<%= index %>" class="weui-media-box__info" style="margin:0">
                 <li class="weui-media-box__info__meta">
-                  <i class="fa fa-thumbs-up"></i>
+                  <i class="fa fa-thumbs-up">
+                    {{ likes }}
+                  </i>
                 </li>
                 <li class="weui-media-box__info__meta">
-                  <i class="fa fa-comments"></i>
+                  <i class="fa fa-comments">
+                    {{ comments }}
+                  </i>
                 </li>
                 <li class="weui-media-box__info__meta weui-media-box__info__meta_extra">
 
                 </li>
               </ul>
+              <script>
+                new Vue({
+                  el: '#app<%= index %>',
+                  data: {
+                    likes: '',
+                    comments: ''
+                  }
+                })
+              </script>
             </div>
         <% end %>
     <% end %>
@@ -63,3 +76,4 @@
     </a>
   </div>
 </div>
+

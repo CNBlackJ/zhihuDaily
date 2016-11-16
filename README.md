@@ -10,3 +10,6 @@
 
 我也修改了这个！！
 master 再次修改
+
+* test rebase
+  * change by test-rebase
